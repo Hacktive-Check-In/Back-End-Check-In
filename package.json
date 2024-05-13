@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
@@ -9,7 +11,6 @@
   "name": "back-end-check-in",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "dev": "npx nodemon ./bin/www"
   },
