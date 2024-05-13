@@ -1,0 +1,203 @@
+[
+    {
+        "id": 1,
+        "RestaurantId": 1,
+        "name": "Original Recipe Chicken",
+        "description": "Das leckerste und meistverkaufte Hühnchen in den Restaurants.",
+        "price": 50000,
+        "imgUrl": "https://i.pinimg.com/474x/8a/f6/d0/8af6d029e1126bfcf3f653402b242a0b.jpg"
+    },
+    {
+        "id": 2,
+        "RestaurantId": 1,
+        "name": "Crispy Chicken Burger",
+        "description": "A crispy chicken burger with fresh toppings.",
+        "price": 100000,
+        "imgUrl": "https://girlheartfood.com/wp-content/uploads/2020/06/Crispy-Chicken-Burger-10.jpg"
+    },
+    {
+        "id": 3,
+        "RestaurantId": 1,
+        "name": "Fried Chicken Wings",
+        "description": "Crispy and juicy chicken wings, perfect as a snack.",
+        "price": 30000,
+        "imgUrl": "https://foryoueats.com/cdn-cgi/image/format=auto,quality=90/https://foryoueats.b-cdn.net/recipe-images/q1QhZI9pfprMWLN9DkyATWI5QN72dVXu8hwKegCd.jpg"
+    },
+    {
+        "id": 4,
+        "RestaurantId": 1,
+        "name": "Spicy Zinger Burger",
+        "description": "A spicy burger with crispy chicken and spicy sauce.",
+        "price": 40000,
+        "imgUrl": "https://i.ytimg.com/vi/aQ1gh6y30CE/sddefault.jpg"
+    },
+    {
+        "id": 5,
+        "RestaurantId": 1,
+        "name": "Mashed Potatoes",
+        "description": "Mashed potatoes with a creamy sauce, a delicious side dish.",
+        "price": 20000,
+        "imgUrl": "https://i.pinimg.com/564x/b6/5f/ef/b65fefe14d8622efa7cba91143c70076.jpg"
+    },
+    {
+        "id": 1,
+        "RestaurantId": 2,
+        "name": "Supreme Pizza",
+        "description": "delicious food at the pizza restaurant",
+        "price": 90000,
+        "imgUrl": "https://images.eatsmarter.com/sites/default/files/styles/1600x1200/public/pepperoni-supreme-pizza-506949.jpg"
+    },
+    {
+        "id": 2,
+        "RestaurantId": 2,
+        "name": "Hawaiian Pizza",
+        "description": "A delicious pizza with pineapple and ham.",
+        "price": 35000,
+        "imgUrl": "https://caloriecomparisons.com/wp-content/uploads/2023/08/favourites-hawaiian-pizza.jpg"
+    },
+    {
+        "id": 3,
+        "RestaurantId": 2,
+        "name": "Pepperoni Pizza",
+        "description": "Eine würzige Pizza mit großzügigen Portionen Pepperoni.",
+        "price": 40000,
+        "imgUrl": "https://admin.screaminsicilian.com/wp-content/uploads/2021/04/product-overhead_SS_Hawaiian.png"
+    },
+    {
+        "id": 4,
+        "RestaurantId": 2,
+        "name": "Margherita Pizza",
+        "description": "A classic pizza with tomatoes, mozzarella and basil.",
+        "price": 50000,
+        "imgUrl": "https://content.pizzahut.com.au/f/49069/1800x1800/8a679f2682/margherita-lge-products.png"
+    },
+    {
+        "id": 5,
+        "RestaurantId": 2,
+        "name": "BBQ Chicken Pizza",
+        "description": "A delicious pizza with BBQ chicken topping.",
+        "price": 756000,
+        "imgUrl": "https://www.pizzahut.co.id/assets/images/digital_menu/phr/menu/my-box/pizza/tasty-tuna.png"
+    },
+    {
+        "id": 1,
+        "RestaurantId": 3,
+        "name": "Big Mac",
+        "description": "Big Mac ist ein Menüpunkt in unserem Restaurant, hergestellt aus ausgewählten Zutaten.",
+        "price": 98000,
+        "imgUrl": "https://c.files.bbci.co.uk/55BF/production/_103915912_gettyimages-1011819170.jpg"
+    },
+    {
+        "id": 2,
+        "RestaurantId": 3,
+        "name": "McChicken",
+        "description": "A delicious chicken burger with crispy lettuce and spicy sauce.",
+        "price": 70000,
+        "imgUrl": "https://c8.alamy.com/comp/AXMBWN/chicken-burger-sandwich-AXMBWN.jpg"
+    },
+    {
+        "id": 3,
+        "RestaurantId": 3,
+        "name": "Filet-O-Fish",
+        "description": "A juicy fish burger with a crispy breading.",
+        "price": 60000,
+        "imgUrl": "https://example.com/filet_o_fish.jpg"
+    },
+    {
+        "id": 4,
+        "RestaurantId": 3,
+        "name": "McFlurry",
+        "description": "A delicious dessert made from creamy ice cream and various toppings",
+        "price": 78000,
+        "imgUrl": "https://asset-2.tstatic.net/suryamalang/foto/bank/images/resep-es-krim-mcflurry-oreo-ala-mcd-tak-kalah-viral-dari-dalgona-coffee-mudah-cuma-butuh-3-bahan.jpg"
+    },
+    {
+        "id": 5,
+        "RestaurantId": 3,
+        "name": "French Fries",
+        "description": "Crispy French fries, perfect as a side dish or snack.",
+        "price": 80000,
+        "imgUrl": "https://asset.kompas.com/crops/BWpse1U48ZVDmeD7wO23HE1lFms=/62x0:746x456/780x390/data/photo/2022/02/01/61f954e150b0b.jpg"
+    },
+    {
+        "id": 1,
+        "RestaurantId": 4,
+        "name": "Whopper",
+        "description": "Mit allen ausgewählten Zutaten ist der Whopper ein beliebter Menüpunkt für alle Altersgruppen.",
+        "price": 87699,
+        "imgUrl": "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/B831/production/_130935174_whopper.jpg"
+    },
+    {
+        "id": 2,
+        "RestaurantId": 4,
+        "name": "Cheeseburger",
+        "description": "A classic cheeseburger with melted cheese and juicy beef.",
+        "price": 88500,
+        "imgUrl": "https://theeburgerdude.com/wp-content/uploads/2023/03/WBC-Blog-01-scaled.jpg"
+    },
+    {
+        "id": 3,
+        "RestaurantId": 4,
+        "name": "Chicken Nuggets",
+        "description": "Crispy chicken nuggets perfect for dipping into your favorite sauce.",
+        "price": 97000,
+        "imgUrl": "https://i.pngimg.me/thumb/f/720/4785777342939136.jpg"
+    },
+    {
+        "id": 4,
+        "RestaurantId": 4,
+        "name": "BK Veggie Burger",
+        "description": "A hearty vegetarian burger with fresh ingredients.",
+        "price": 45000,
+        "imgUrl": "https://burgerking.com.my/upload/image/Product/67/Mushroom%20Veggie%20Ala%20Carte.png"
+    },
+    {
+        "id": 5,
+        "RestaurantId": 4,
+        "name": "Onion Rings",
+        "description": "Crispy onion rings, perfect as a side dish to your burger.",
+        "price": 39000,
+        "imgUrl": "https://www.mashed.com/img/gallery/mcdonalds-doesnt-have-onion-rings-due-to-efficiency-concerns/l-intro-1696021359.jpg"
+    },
+    {
+        "id": 1,
+        "RestaurantId": 5,
+        "name": "Caramel Macchiato",
+        "description": "Espresso mit Milch, Karamellsirup und einer Caramelsauce.",
+        "price": 37800,
+        "imgUrl": "https://www.shutterstock.com/image-photo/bangkok-thailand-august-10-2017-600nw-693788551.jpg"
+    },
+    {
+        "id": 2,
+        "RestaurantId": 5,
+        "name": "Java Chip Frappuccino",
+        "description": "A refreshing Frappuccino with chocolate chips and coffee",
+        "price": 48000,
+        "imgUrl": "https://nilaigizi.com/assets/images/produk/produk_1578134865.jpg"
+    },
+    {
+        "id": 3,
+        "RestaurantId": 5,
+        "name": "Green Tea Latte",
+        "description": "A creamy drink made from matcha tea and milk.",
+        "price": 51000,
+        "imgUrl": "https://i2.wp.com/thegestationaldiabetic.com/wp-content/uploads/2022/11/iced-matcha-latte-oat-milk-starbucks-3.jpg"
+    },
+    {
+        "id": 4,
+        "RestaurantId": 5,
+        "name": "Blueberry Muffin",
+        "description": "A moist muffin with fresh blueberries.",
+        "price": 52000,
+        "imgUrl": "https://www.starbucks.com.hk/media/catalog/product/b/l/blueberry_muffin_3_1.jpg"
+    },
+    {
+        "id": 5,
+        "RestaurantId": 5,
+        "name": "Chicken Panini",
+        "description": "A hearty panini with grilled chicken and cheese.",
+        "price": 54500,
+        "imgUrl": "https://www.starbucks.com.cn/images/products/chicken-panini.jpg"
+    }
+
+]
