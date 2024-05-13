@@ -1,4 +1,4 @@
-const { encryptJsonwebtoken } = require('../helper');
+const { encryptJsonwebtoken } = require('../helpers');
 const { User } = require('../models');
 
 let Authentication = async (req, res, next) => {
