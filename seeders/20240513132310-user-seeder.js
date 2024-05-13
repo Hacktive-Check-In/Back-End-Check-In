@@ -14,7 +14,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    const user = require('../users.json');
+    const user = require('../data/user.json');
     await User.bulkCreate(user, { individualHooks: true });
   },
 
