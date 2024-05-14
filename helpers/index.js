@@ -23,9 +23,16 @@ function encryptJsonwebtoken(token) {
   return payload;
 }
 
+function generateOrderID() {
+  const timestamp = new Date().getTime();
+  const randomString = Math.random().toString(36).substr(2, 9);
+  return `DONATION-${timestamp}-${randomString}`;
+}
+
 module.exports = {
   bcryptData,
   comparePassword,
   jsonwebtoken,
   encryptJsonwebtoken,
+  generateOrderID,
 };
