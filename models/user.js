@@ -49,6 +49,9 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
+      avatar: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,
@@ -57,10 +60,9 @@ module.exports = (sequelize, DataTypes) => {
         beforeCreate: (user, options) => {
           // hasing the data
           user.password = bcryptData(user.password);
-          // set default role
-          if (user.role == null || !user.role) {
-            user.role = 'Staff';
-          }
+
+          user.avatar =
+            'https://res.cloudinary.com/dghilbqdk/image/upload/v1714440067/profile%20pic/blggo1bqrandlpfurdp5.jpg';
         },
       },
     }
