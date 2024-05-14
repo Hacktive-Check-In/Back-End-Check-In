@@ -1,42 +1,42 @@
 [
   {
-    "id": 1,
-    "name": "KFC Jakarta Central",
-    "address": "Jakarta, Indonesia",
-    "description": "KFC Jakarta bietet eine umfassende Speisekarte.",
-    "rating": 4.5,
-    "imgUrl": "https://klasika.kompas.id/wp-content/uploads/2017/07/2707-Klasiloka-KFC_FEAT.jpg"
+      "id": 1,
+      "name": "PASOLA Restaurant",
+      "address": "Jakarta",
+      "description": "Restoran ini menawarkan pengalaman kuliner yang unik dengan menu yang inovatif dan cita rasa yang luar biasa.",
+      "rating": 5.0,
+      "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/39/b2/74/pasola-restaurant-buffet.jpg?w=1200&h=-1&s=1"
   },
   {
-    "id": 2,
-    "name": "Pizza Hut Bekasi",
-    "address": "Bekasi, Indonesia",
-    "description": "Pizza Hut provides excellent service, when you come here you will be satisfied",
-    "rating": 4.2,
-    "imgUrl": "https://images.bisnis.com/posts/2023/01/03/1614712/pzza-sarimelati-1.jpg"
+      "id": 2,
+      "name": "Dining Room At Park Hyatt",
+      "address": "Jakarta",
+      "description": "menampilkan masakan kreatif yang menggunakan bahan-bahan lokal terbaik dengan sentuhan internasional.",
+      "rating": 5.0,
+      "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/cf/98/18/dining-room-open-kitchen.jpg?w=1200&h=-1&s=1"
   },
   {
-    "id": 3,
-    "name": "McDonald's Bogor",
-    "address": "Bogor, Indonesia",
-    "description": "In this place you will be served well and special",
-    "rating": 4.3,
-    "imgUrl": "https://d2vuyvo9qdtgo9.cloudfront.net/assets/img/bg/img_visi.jpg"
+      "id": 3,
+      "name": "Sugar & Spice",
+      "address": "Jakarta",
+      "description": "Merupakan salah satu destinasi kuliner Jepang yang mewah, dengan desain interior yang elegan dan menu sushi yang berkualitas tinggi.",
+      "rating": 5.0,
+      "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/81/48/34/sitting-arrangement.jpg?w=1200&h=-1&s=1"
   },
   {
-    "id": 4,
-    "name": "Burger King Bandung",
-    "address": "Bandung, Indonesia",
-    "description": "Wenn Sie hierher kommen, erhalten Sie viele Rabatte.",
-    "rating": 4.1,
-    "imgUrl": "https://images.bisnis.com/posts/2020/11/03/1313185/burger-king.jpg"
+      "id": 4,
+      "name": "Bondi Restaurant",
+      "address": "Bali",
+      "description": "menawarkan hidangan Perancis klasik dengan sentuhan modern, disajikan dengan layanan yang sangat profesional.",
+      "rating": 5.0,
+      "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/1f/65/32/bondi-cafe-at-finns-beach.jpg?w=1200&h=-1&s=1"
   },
   {
-    "id": 5,
-    "name": "Starbucks Jakarta",
-    "address": "Jakarta, Indonesia",
-    "description": "Jetzt sind die Preise bei Starbucks günstiger, es ist sicher, Kaffee zu genießen.",
-    "rating": 4.4,
-    "imgUrl": "https://asumsi.co/wp-content/uploads/1644398291857_starbucksge35acbd7b1920.jpg"
+      "id": 5,
+      "name": "Copper Kitchen & Bar",
+      "address": "Bali",
+      "description": "Terletak di atas tebing dengan pemandangan laut yang spektakuler, menawarkan suasana yang romantis dan koktail yang lezat.",
+      "rating": 4.5,
+      "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/80/17/51/the-rooftop.jpg?w=1200&h=-1&s=1"
   }
 ]

@@ -23,7 +23,7 @@ class UserControllers {
         try {
             let { email, password } = req.body;
             if (!email || !password) {
-                throw { name: "invalidInput" }
+                throw { name: "Invalid Input" }
             }
             const user = await User.findOne({
                 where: { email }

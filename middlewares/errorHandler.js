@@ -2,7 +2,7 @@ let errorHandler = async (err, req, res, next) => {
   let status = err.status;
   let name = err.name;
   let message = err.message;
-
+  console.log(err, "errr");
   if (message === 'jwt malformed' || message === 'invalid signature') {
     res.status(401).json({ message: 'Error authentication' });
     return;
@@ -25,13 +25,20 @@ let errorHandler = async (err, req, res, next) => {
         message: msg2,
       });
       break;
+    case "Invalid User":
+      res.status(401).json({
+        message: "Invalid email / password",
+      });
+      break;
     case 'missingData':
       res.status(404).json({
         message: 'Data not found',
       });
       break;
-    case 'invalidInput':
-      res.status(400).json({ message });
+    case "Invalid Input":
+      res.status(400).json({
+        message: "email / password required",
+      });
       break;
     case 'validationError':
       res.status(401).json({ message });

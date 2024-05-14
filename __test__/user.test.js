@@ -1,6 +1,6 @@
 const request = require("supertest")
 const app = require("../app");
-const { User } = require('../models')
+const { User, Restaurant, Item } = require('../models')
 
 let access_token;
 
@@ -15,7 +15,19 @@ beforeAll(async () => {
             avatar: "https://i.pinimg.com/474x/d2/4b/be/d24bbe79387549086d159aa4462bf4c9.jpg"
         });
         await User.bulkCreate(data)
-        // await sequelize.queryInterface.bulkInsert('Lodgings', data)
+        let restaurant = require('../data/restaurant.json').map((el) => {
+            delete el.id;
+            el.createdAt = el.updatedAt = new Date();
+            return el;
+        });
+        await queryInterface.bulkInsert("Restaurants", restaurant, {});
+        let item = require('../data/item.json').map((el) => {
+            delete el.id;
+            el.createdAt = el.updatedAt = new Date();
+            return el;
+        });
+        await queryInterface.bulkInsert("Items", item, {});
+        // await sequelize.queryInterface.bulkInsert('Restaurant', data)
     } catch (error) {
         console.log(error)
     }
@@ -40,7 +52,6 @@ describe("POST /login", () => {
         expect(status).toBe(400);
         expect(body).toEqual({ message: 'email / password required' });
     });
-
     test('/login failed without email', async () => {
         const response = await request(app)
             .post('/login')
@@ -53,19 +64,54 @@ describe("POST /login", () => {
 describe('Success Get /restaurants', () => {
     test("success Get /restaurants", async () => {
         // let token;
-        const respone = await request(app).get('/restaurants');
+        const respone = (await request(app).get('/restaurants').set('Authorization', 'Bearer ' + access_token));
         const { body, status } = respone
-        console.log(body)
+        // access_token = body.access_token;
+        console.log(body, "<<<<<<<ATASNYA")
         expect(status).toBe(200);
-        expect(Array.isArray(body.data)).toBe(false)
-        console.log(body, "bodyyyyy11111")
-        expect(status).toBe(200)
-        expect(body).toHaveProperty('data')
+        expect(body).toBeInstanceOf(Array);
+        if (body.length > 0) {
+            expect(body[0]).toBeInstanceOf(Object)
+        }
     })
+    test("authorization error /restaurants", async () => {
+        // let token;
+        const respone = await request(app).get('/restaurants')
+        const { body, status } = respone
+        // access_token = body.access_token;
+        console.log(body, "<<<<<<<ATASNYA")
+        expect(status).toBe(401);
+        expect(body).toBeInstanceOf(Object);
+    })
+    test('Success Get Id/restaurants', async () => {
+        const id = 1;
+        const response = (await request(app).get(`/restaurants/${id}`).set('Authorization', 'Bearer ' + access_token))
+        const { body, status } = response;
+        access_token = body.access_token;
+        console.log(body, "<<<<<<<<")
+        expect(status).toBe(200);
+        expect(body).toBeInstanceOf(Array);
+        if (body.length > 0) {
+            expect(body[0]).toBeInstanceOf(Object)
+        }
+    }
+    )
 })
 afterAll(async () => {
     try {
         await User.destroy({
+            where: {},
+            truncate: true,
+            cascade: true,
+            restartIdentity: true,
+        });
+        await Restaurant.destroy({
+            where: {},
+            truncate: true,
+            cascade: true,
+            restartIdentity: true,
+        });
+        await Item.destroy({
             where: {},
             truncate: true,
             cascade: true,
