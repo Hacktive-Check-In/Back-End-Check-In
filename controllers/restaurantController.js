@@ -1,11 +1,20 @@
+const { Op } = require('sequelize');
 const { Restaurant, Item } = require('../models');
 
 class restaurantController {
   static async getRestaurant(req, res, next) {
     try {
-      let restaurant = await Restaurant.findAll();
+      let searchTarget = req.query.search;
+      const paramsQuerySQL = {};
+      if (searchTarget) {
+        paramsQuerySQL.where = {
+          name: { [Op.iLike]: `%${searchTarget}%` },
+        };
+      }
+      let restaurant = await Restaurant.findAll(paramsQuerySQL);
       res.status(200).json(restaurant);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }
