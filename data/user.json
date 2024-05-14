@@ -1,37 +1,32 @@
 [
-    {
-        "id": 1,
-        "name": "user1",
-        "email": "user1@mail.com",
-        "phoneNumber": "087654321",
-        "password": "user1"
-    },
-    {
-        "id": 2,
-        "name": "user2",
-        "email": "user2@mail.com",
-        "phoneNumber": "08765432121",
-        "password": "user2"
-    },
-    {
-        "id": 3,
-        "name": "user3",
-        "email": "user3@mail.com",
-        "phoneNumber": "081232322",
-        "password": "user3"
-    },
-    {
-        "id": 4,
-        "name": "user4",
-        "email": "user4@mail.com",
-        "phoneNumber": "082322322",
-        "password": "user4"
-    },
-    {
-        "id": 5,
-        "name": "user5",
-        "email": "user5@mail.com",
-        "phoneNumber": "082323222",
-        "password": "user5"
-    }
+  {
+    "name": "user1",
+    "email": "user1@mail.com",
+    "phoneNumber": "087654321",
+    "password": "user1"
+  },
+  {
+    "name": "user2",
+    "email": "user2@mail.com",
+    "phoneNumber": "08765432121",
+    "password": "user2"
+  },
+  {
+    "name": "user3",
+    "email": "user3@mail.com",
+    "phoneNumber": "081232322",
+    "password": "user3"
+  },
+  {
+    "name": "user4",
+    "email": "user4@mail.com",
+    "phoneNumber": "082322322",
+    "password": "user4"
+  },
+  {
+    "name": "user5",
+    "email": "user5@mail.com",
+    "phoneNumber": "082323222",
+    "password": "user5"
+  }
 ]

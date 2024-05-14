@@ -1,5 +1,5 @@
 npx sequelize-cli model:generate --name User --attributes name:string,email:string,phoneNumber:string,password:string
 npx sequelize-cli model:generate --name Restaurant --attributes name:string,location:string,description:string,rating:float,imgUrl:text
 npx sequelize-cli model:generate --name Item --attributes RestaurantId:string,name:string,description:string,price:integer,imgUrl:text
-npx sequelize-cli model:generate --name TransactionHeader --attributes UserId:integer,RestaurantId:integer,reservationDate:date,totalPrice:integer,status:boolean
+npx sequelize-cli model:generate --name TransactionHeader --attributes UserId:integer,RestaurantId:integer,reservationDate:date,totalPrice:integer,status:string
 npx sequelize-cli model:generate --name TransactionDetail --attributes TransactionHeaderId:integer,ItemId:integer,qty:integer,subTotal:integer
