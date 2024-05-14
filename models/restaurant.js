@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Restaurant.init(
     {
       name: DataTypes.STRING,
-      location: DataTypes.STRING,
+      address: DataTypes.STRING,
       description: DataTypes.STRING,
       rating: DataTypes.FLOAT,
       imgUrl: DataTypes.TEXT,

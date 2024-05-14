@@ -1,3 +1,5 @@
+const snap = require('../config/midtrans');
+const { generateOrderID } = require('../helpers');
 const {
   TransactionHeader,
   TransactionDetail,
@@ -6,7 +8,7 @@ const {
   Item,
   sequelize,
 } = require('../models');
-const midtransClient = require('midtrans-client');
+
 class transactionController {
   static async createTransaction(req, res, next) {
     const t = await sequelize.transaction(); // Start a transaction
@@ -40,16 +42,11 @@ class transactionController {
         { transaction: t }
       );
 
-      let snap = new midtransClient.Snap({
-        isProduction: false,
-        serverKey: process.env.MIDTRANS_SERVER_KEY,
-      });
-
       let orderIdGenerate = TransactionHeaderId;
-
+      let uniqueDate = generateOrderID();
       let parameter = {
         transaction_details: {
-          order_id: orderIdGenerate,
+          order_id: 'Transaction-' + orderIdGenerate + '-' + uniqueDate,
           gross_amount: newTransactionHeader.totalPrice,
         },
         credit_card: {
@@ -88,7 +85,7 @@ class transactionController {
         data.transaction_status == 'settlement' ||
         data.transaction_status == 'capture'
       ) {
-        const headerId = data.order_id;
+        const headerId = data.order_id.split('-')[1];
         await TransactionHeader.update(
           { status: 'success' },
           {
@@ -111,7 +108,7 @@ class transactionController {
       res.status(200).json({
         message: 'midtrans transaction process finish',
       });
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
       next(error);
