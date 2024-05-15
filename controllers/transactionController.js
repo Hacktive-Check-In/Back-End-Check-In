@@ -123,7 +123,7 @@ class transactionController {
         include: [
           {
             model: Restaurant,
-            attributes: ['name', 'location', 'description', 'rating', 'imgUrl'],
+            attributes: ['name', 'address', 'description', 'rating', 'imgUrl'],
           },
         ],
       });
@@ -142,7 +142,7 @@ class transactionController {
         include: [
           {
             model: Restaurant,
-            attributes: ['name', 'location', 'description', 'rating', 'imgUrl'],
+            attributes: ['name', 'address', 'description', 'rating', 'imgUrl'],
           },
           {
             model: User,
