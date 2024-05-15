@@ -31,7 +31,7 @@ List of available endpoints:
 }
 ```
 
-### response
+### Response:
 
 _respone(201 - created)_
 
@@ -85,7 +85,7 @@ OR
 }
 ```
 
-### response
+### Response:
 
 _respone(200 - ok)_
 
@@ -109,7 +109,11 @@ OR
 
 ## 3. `GET` /user/detail
 
-### request:
+### Description:
+
+- get the current user detail
+
+### Request:
 
 - headers
 
@@ -120,7 +124,7 @@ OR
 }
 ```
 
-### response:
+### Response:
 
 _response (200-ok)_
 
@@ -147,9 +151,13 @@ _response (401 - Unauthorized)_
 
 ## 4. `GET` /restaurant
 
-### request
+### Description:
 
-- params
+- get all of the restaurant that is registered into our application
+
+### Request:
+
+- query
 
 ```json
 {
@@ -161,79 +169,404 @@ _response (401 - Unauthorized)_
 
 ```json
 {
-  "Authorization": "Bearer <token>",
-  "Content-Type": "multipart/form-data"
+  "Authorization": "Bearer <token>"
 }
 ```
 
-### response:
+### Response:
+
+_response (200-ok)_
 
 ```JSON
 [
     {
         "id": 1,
-        "name": "KFC Jakarta Central",
-        "address": "Jakarta, Indonesia",
-        "description": "KFC Jakarta bietet eine umfassende Speisekarte.",
-        "rating": 4.5,
-        "imgUrl": "https://klasika.kompas.id/wp-content/uploads/2017/07/2707-Klasiloka-KFC_FEAT.jpg",
-        "createdAt": "2024-05-14T10:08:16.387Z",
-        "updatedAt": "2024-05-14T10:08:16.387Z"
+        "name": "PASOLA Restaurant",
+        "address": "Jakarta",
+        "description": "Restoran ini menawarkan pengalaman kuliner yang unik dengan menu yang inovatif dan cita rasa yang luar biasa.",
+        "rating": 5,
+        "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/39/b2/74/pasola-restaurant-buffet.jpg?w=1200&h=-1&s=1",
+        "createdAt": "2024-05-15T10:28:53.526Z",
+        "updatedAt": "2024-05-15T10:28:53.526Z"
     },
     {
         "id": 2,
-        "name": "Pizza Hut Bekasi",
-        "address": "Bekasi, Indonesia",
-        "description": "Pizza Hut provides excellent service, when you come here you will be satisfied",
-        "rating": 4.2,
-        "imgUrl": "https://images.bisnis.com/posts/2023/01/03/1614712/pzza-sarimelati-1.jpg",
-        "createdAt": "2024-05-14T10:08:16.387Z",
-        "updatedAt": "2024-05-14T10:08:16.387Z"
+        "name": "Dining Room At Park Hyatt",
+        "address": "Jakarta",
+        "description": "menampilkan masakan kreatif yang menggunakan bahan-bahan lokal terbaik dengan sentuhan internasional.",
+        "rating": 5,
+        "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/cf/98/18/dining-room-open-kitchen.jpg?w=1200&h=-1&s=1",
+        "createdAt": "2024-05-15T10:28:53.526Z",
+        "updatedAt": "2024-05-15T10:28:53.526Z"
     },
     {
         "id": 3,
-        "name": "McDonald's Bogor",
-        "address": "Bogor, Indonesia",
-        "description": "In this place you will be served well and special",
-        "rating": 4.3,
-        "imgUrl": "https://d2vuyvo9qdtgo9.cloudfront.net/assets/img/bg/img_visi.jpg",
-        "createdAt": "2024-05-14T10:08:16.387Z",
-        "updatedAt": "2024-05-14T10:08:16.387Z"
+        "name": "Sugar & Spice",
+        "address": "Jakarta",
+        "description": "Merupakan salah satu destinasi kuliner Jepang yang mewah, dengan desain interior yang elegan dan menu sushi yang berkualitas tinggi.",
+        "rating": 5,
+        "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/81/48/34/sitting-arrangement.jpg?w=1200&h=-1&s=1",
+        "createdAt": "2024-05-15T10:28:53.526Z",
+        "updatedAt": "2024-05-15T10:28:53.526Z"
     },
     {
         "id": 4,
-        "name": "Burger King Bandung",
-        "address": "Bandung, Indonesia",
-        "description": "Wenn Sie hierher kommen, erhalten Sie viele Rabatte.",
-        "rating": 4.1,
-        "imgUrl": "https://images.bisnis.com/posts/2020/11/03/1313185/burger-king.jpg",
-        "createdAt": "2024-05-14T10:08:16.387Z",
-        "updatedAt": "2024-05-14T10:08:16.387Z"
+        "name": "Bondi Restaurant",
+        "address": "Bali",
+        "description": "menawarkan hidangan Perancis klasik dengan sentuhan modern, disajikan dengan layanan yang sangat profesional.",
+        "rating": 5,
+        "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/1f/65/32/bondi-cafe-at-finns-beach.jpg?w=1200&h=-1&s=1",
+        "createdAt": "2024-05-15T10:28:53.526Z",
+        "updatedAt": "2024-05-15T10:28:53.526Z"
     },
     {
         "id": 5,
-        "name": "Starbucks Jakarta",
-        "address": "Jakarta, Indonesia",
-        "description": "Jetzt sind die Preise bei Starbucks günstiger, es ist sicher, Kaffee zu genießen.",
-        "rating": 4.4,
-        "imgUrl": "https://asumsi.co/wp-content/uploads/1644398291857_starbucksge35acbd7b1920.jpg",
-        "createdAt": "2024-05-14T10:08:16.387Z",
-        "updatedAt": "2024-05-14T10:08:16.387Z"
+        "name": "Copper Kitchen & Bar",
+        "address": "Bali",
+        "description": "Terletak di atas tebing dengan pemandangan laut yang spektakuler, menawarkan suasana yang romantis dan koktail yang lezat.",
+        "rating": 4.5,
+        "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/80/17/51/the-rooftop.jpg?w=1200&h=-1&s=1",
+        "createdAt": "2024-05-15T10:28:53.526Z",
+        "updatedAt": "2024-05-15T10:28:53.526Z"
     }
 ]
 ```
 
+_response (401 - Unauthorized)_
+
+```json
+{
+  "message": "Error authentication"
+}
+```
+
 ## 5. `GET` /restaurant/:id
 
-### request
+### Description:
+
+- get restaurant detail with their menus
+
+### Request:
+
+- params
+
+```json
+{
+  "id": "string"
+}
+```
 
 - headers
 
 ```json
 {
-  "Authorization": "Bearer <token>",
-  "Content-Type": "multipart/form-data"
+  "Authorization": "Bearer <token>"
 }
 ```
 
-### response
+### Response:
+
+_response (200-ok)_
+
+```JSON
+[
+    {
+        "id": 1,
+        "name": "PASOLA Restaurant",
+        "address": "Jakarta",
+        "description": "Restoran ini menawarkan pengalaman kuliner yang unik dengan menu yang inovatif dan cita rasa yang luar biasa.",
+        "rating": 5,
+        "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/39/b2/74/pasola-restaurant-buffet.jpg?w=1200&h=-1&s=1",
+        "createdAt": "2024-05-15T10:28:53.526Z",
+        "updatedAt": "2024-05-15T10:28:53.526Z",
+        "Items": [
+            {
+                "id": 1,
+                "RestaurantId": 1,
+                "name": "MIE GORENG",
+                "description": "Fried Egg Noodles, Prawn, Beef Ball,Chicken Sate",
+                "price": 125000,
+                "imgUrl": "https://asset.kompas.com/crops/032NyNKaO9X61kL1ZpU9AS4khrU=/52x28:954x629/750x500/data/photo/2020/11/19/5fb641f087a66.jpg",
+                "createdAt": "2024-05-15T10:28:53.555Z",
+                "updatedAt": "2024-05-15T10:28:53.555Z"
+            },
+            {
+                "id": 2,
+                "RestaurantId": 1,
+                "name": "KING PRAWNS",
+                "description": "Spicy Sour Keung Sauce, Lingueine,Roasted Cherry Tomatoes",
+                "price": 398000,
+                "imgUrl": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/prawns-88d2952.jpg",
+                "createdAt": "2024-05-15T10:28:53.555Z",
+                "updatedAt": "2024-05-15T10:28:53.555Z"
+            },
+            {
+                "id": 3,
+                "RestaurantId": 1,
+                "name": "ASAM PADEH BOWL",
+                "description": "Prawns,Scallops,Garouper, Baby Octopus,Tamarind Chili Lime Leaf",
+                "price": 198000,
+                "imgUrl": "https://img-global.cpcdn.com/recipes/0cb7219daddbeeda/680x482cq70/asam-padeh-gajeboh-foto-resep-utama.jpg",
+                "createdAt": "2024-05-15T10:28:53.555Z",
+                "updatedAt": "2024-05-15T10:28:53.555Z"
+            },
+            {
+                "id": 4,
+                "RestaurantId": 1,
+                "name": "CHARRED AUSTRALIAN WAGYU TENDERLOIN",
+                "description": "Beef Tenderloin,Pelawan Mushroom Sauce,Lobi Lobi Glaze, Mashed Potato",
+                "price": 780000,
+                "imgUrl": "https://i0.wp.com/yummylummy.com/wp-content/uploads/2018/12/Gary_Lum_Australian-Wagyu-beef-013.jpg?fit=2048%2C1638&ssl=1",
+                "createdAt": "2024-05-15T10:28:53.555Z",
+                "updatedAt": "2024-05-15T10:28:53.555Z"
+            },
+            {
+                "id": 5,
+                "RestaurantId": 1,
+                "name": "BUMBU RUJAK BARBECUED GAROUPER",
+                "description": "Sustainbly Farmed Garouper Fillet",
+                "price": 280000,
+                "imgUrl": "https://img-global.cpcdn.com/recipes/e37993496d46f45c/680x482cq70/sosis-bumbu-rujak-foto-resep-utama.jpg",
+                "createdAt": "2024-05-15T10:28:53.555Z",
+                "updatedAt": "2024-05-15T10:28:53.555Z"
+            }
+        ]
+    }
+]
+```
+
+_response (401 - Unauthorized)_
+
+```json
+{
+  "message": "Error authentication"
+}
+```
+
+## 6. `GET` /transaction
+
+### Description:
+
+- get the current logged in user receipt of success transaction
+
+### Request:
+
+- headers
+
+```json
+{
+  "Authorization": "Bearer <token>"
+}
+```
+
+### Response:
+
+_response (200-ok)_
+
+```JSON
+[
+    {
+        "id": 1,
+        "UserId": 2,
+        "RestaurantId": 1,
+        "reservationDate": "2024-05-16T11:48:57.622Z",
+        "totalPrice": 350000,
+        "status": "success",
+        "createdAt": "2024-05-15T10:35:12.553Z",
+        "updatedAt": "2024-05-15T10:35:26.102Z",
+        "Restaurant": {
+            "name": "PASOLA Restaurant",
+            "address": "Jakarta",
+            "description": "Restoran ini menawarkan pengalaman kuliner yang unik dengan menu yang inovatif dan cita rasa yang luar biasa.",
+            "rating": 5,
+            "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/39/b2/74/pasola-restaurant-buffet.jpg?w=1200&h=-1&s=1"
+        }
+    }
+]
+```
+
+_response (401 - Unauthorized)_
+
+```json
+{
+  "message": "Error authentication"
+}
+```
+
+## 7. `POST` /transaction
+
+### Request:
+
+- body
+
+```JSON
+{
+    "reservationDate": "2024-05-16 18:48:57.622 +0700",
+    "totalPrice": 350000,
+    "RestaurantId": 1,
+    "items": [
+        {"ItemId":1, "qty":2, "subTotal": 100000},
+        {"ItemId":2, "qty":2, "subTotal": 200000}
+    ]
+}
+```
+
+- header
+
+```json
+{
+  "Authorization": "Bearer <token>"
+}
+```
+
+### Response:
+
+_response (200-ok)_
+
+```json
+{
+  "redirect_url": "https://app.sandbox.midtrans.com/snap/v4/redirection/4efc40e4-54c1-48a1-9e1d-6ebe1ab8e9cb"
+}
+```
+
+_response (401 - Unauthorized)_
+
+```json
+{
+  "message": "Error authentication"
+}
+```
+
+## 8. `GET` /transaction/:id
+
+### Description:
+
+- get the transaction detail of the receipt
+
+### Request:
+
+- params
+
+```json
+{
+  "id": "string"
+}
+```
+
+- headers
+
+```json
+{
+  "Authorization": "Bearer <token>"
+}
+```
+
+### Response:
+
+_response (200-ok)_
+
+```JSON
+{
+    "id": 1,
+    "UserId": 2,
+    "RestaurantId": 1,
+    "reservationDate": "2024-05-16T11:48:57.622Z",
+    "totalPrice": 350000,
+    "status": "success",
+    "createdAt": "2024-05-15T10:35:12.553Z",
+    "updatedAt": "2024-05-15T10:35:26.102Z",
+    "Restaurant": {
+        "name": "PASOLA Restaurant",
+        "address": "Jakarta",
+        "description": "Restoran ini menawarkan pengalaman kuliner yang unik dengan menu yang inovatif dan cita rasa yang luar biasa.",
+        "rating": 5,
+        "imgUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/39/b2/74/pasola-restaurant-buffet.jpg?w=1200&h=-1&s=1"
+    },
+    "User": {
+        "name": "user2",
+        "phoneNumber": "08765432121"
+    },
+    "TransactionDetails": [
+        {
+            "qty": 2,
+            "subTotal": 100000,
+            "Item": {
+                "name": "MIE GORENG",
+                "description": "Fried Egg Noodles, Prawn, Beef Ball,Chicken Sate",
+                "price": 125000
+            }
+        },
+        {
+            "qty": 2,
+            "subTotal": 200000,
+            "Item": {
+                "name": "KING PRAWNS",
+                "description": "Spicy Sour Keung Sauce, Lingueine,Roasted Cherry Tomatoes",
+                "price": 398000
+            }
+        }
+    ]
+}
+```
+
+_response (401 - Unauthorized)_
+
+```json
+{
+  "message": "Error authentication"
+}
+```
+
+## 8. `POST` /transaction/midtrans/result
+
+### Description:
+
+- this post method is being used for midtrans give feedback if the user already paid the reservation or not
+
+### Request:
+
+- body
+
+```JSON
+{
+  "transaction_time": "date",
+  "transaction_status": "string",
+  "transaction_id": "string",
+  "status_message": "string",
+  "status_code": "string",
+  "signature_key": "string",
+  "payment_type": "string",
+  "order_id": "string",
+  "merchant_id": "string",
+  "masked_card": "string",
+  "gross_amount": "string",
+  "fraud_status": "string",
+  "eci": "string",
+  "currency": "string",
+  "channel_response_message": "string",
+  "channel_response_code": "string",
+  "card_type": "string",
+  "bank": "string",
+  "approval_code": "string"
+}
+```
+
+### Response:
+
+_response (200-ok)_
+
+```json
+{
+  "message": "midtrans transaction process finish"
+}
+```
+
+## Global Error
+
+_Response (500 - Internal Server Error)_
+
+```JSON
+{
+    "message": "Internal server error"
+}
+```
