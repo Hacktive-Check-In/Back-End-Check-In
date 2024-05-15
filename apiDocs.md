@@ -122,6 +122,8 @@ OR
 
 ### response:
 
+_response (200-ok)_
+
 ```JSON
 {
     "id": 1,
@@ -134,3 +136,104 @@ OR
     "updatedAt": "2024-05-14T10:08:14.860Z"
 }
 ```
+
+_response (401 - Unauthorized)_
+
+```json
+{
+  "message": "Error authentication"
+}
+```
+
+## 4. `GET` /restaurant
+
+### request
+
+- params
+
+```json
+{
+  "search": "string"
+}
+```
+
+- headers
+
+```json
+{
+  "Authorization": "Bearer <token>",
+  "Content-Type": "multipart/form-data"
+}
+```
+
+### response:
+
+```JSON
+[
+    {
+        "id": 1,
+        "name": "KFC Jakarta Central",
+        "address": "Jakarta, Indonesia",
+        "description": "KFC Jakarta bietet eine umfassende Speisekarte.",
+        "rating": 4.5,
+        "imgUrl": "https://klasika.kompas.id/wp-content/uploads/2017/07/2707-Klasiloka-KFC_FEAT.jpg",
+        "createdAt": "2024-05-14T10:08:16.387Z",
+        "updatedAt": "2024-05-14T10:08:16.387Z"
+    },
+    {
+        "id": 2,
+        "name": "Pizza Hut Bekasi",
+        "address": "Bekasi, Indonesia",
+        "description": "Pizza Hut provides excellent service, when you come here you will be satisfied",
+        "rating": 4.2,
+        "imgUrl": "https://images.bisnis.com/posts/2023/01/03/1614712/pzza-sarimelati-1.jpg",
+        "createdAt": "2024-05-14T10:08:16.387Z",
+        "updatedAt": "2024-05-14T10:08:16.387Z"
+    },
+    {
+        "id": 3,
+        "name": "McDonald's Bogor",
+        "address": "Bogor, Indonesia",
+        "description": "In this place you will be served well and special",
+        "rating": 4.3,
+        "imgUrl": "https://d2vuyvo9qdtgo9.cloudfront.net/assets/img/bg/img_visi.jpg",
+        "createdAt": "2024-05-14T10:08:16.387Z",
+        "updatedAt": "2024-05-14T10:08:16.387Z"
+    },
+    {
+        "id": 4,
+        "name": "Burger King Bandung",
+        "address": "Bandung, Indonesia",
+        "description": "Wenn Sie hierher kommen, erhalten Sie viele Rabatte.",
+        "rating": 4.1,
+        "imgUrl": "https://images.bisnis.com/posts/2020/11/03/1313185/burger-king.jpg",
+        "createdAt": "2024-05-14T10:08:16.387Z",
+        "updatedAt": "2024-05-14T10:08:16.387Z"
+    },
+    {
+        "id": 5,
+        "name": "Starbucks Jakarta",
+        "address": "Jakarta, Indonesia",
+        "description": "Jetzt sind die Preise bei Starbucks günstiger, es ist sicher, Kaffee zu genießen.",
+        "rating": 4.4,
+        "imgUrl": "https://asumsi.co/wp-content/uploads/1644398291857_starbucksge35acbd7b1920.jpg",
+        "createdAt": "2024-05-14T10:08:16.387Z",
+        "updatedAt": "2024-05-14T10:08:16.387Z"
+    }
+]
+```
+
+## 5. `GET` /restaurant/:id
+
+### request
+
+- headers
+
+```json
+{
+  "Authorization": "Bearer <token>",
+  "Content-Type": "multipart/form-data"
+}
+```
+
+### response
