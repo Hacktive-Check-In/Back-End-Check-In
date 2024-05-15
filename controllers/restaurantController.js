@@ -21,14 +21,13 @@ class restaurantController {
   static async getRestaurantItem(req, res, next) {
     try {
       let restaurantId = req.params.id;
-      let restaurant = await Item.findAll({
+      let restaurant = await Restaurant.findAll({
         include: {
-          model: Restaurant,
-          attributes: { exclude: ['password'] },
+          model: Item,
         },
         order: [['id', 'ASC']],
         where: {
-          RestaurantId: restaurantId,
+          id: restaurantId,
         },
       });
       res.status(200).json(restaurant);
