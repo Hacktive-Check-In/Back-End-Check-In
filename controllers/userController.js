@@ -49,7 +49,7 @@ class UserControllers {
   static async getUserDetail(req, res, next) {
     try {
       const userId = req.user.id;
-      let data = await User.findAll({ where: { id: userId } });
+      let data = await User.findOne({ where: { id: userId } });
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
