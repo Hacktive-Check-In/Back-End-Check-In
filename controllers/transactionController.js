@@ -65,10 +65,7 @@ class transactionController {
       const { redirect_url, token } = dataTransaction;
       await t.commit();
       res.status(201).json({
-        transactionHeader: newTransactionHeader,
-        transactionDetails: newTransactionDetails,
         redirect_url,
-        token,
       });
     } catch (error) {
       await t.rollback();
