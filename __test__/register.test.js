@@ -47,5 +47,13 @@ describe("POST /register", () => {
         expect(status).toBe(400);
         expect(body).toEqual({ message: ['email is required'] });
     });
+    test('/register failed without password', async () => {
+        const response = await request(app)
+            .post('/register')
+            .send({ name: `admin1`, phoneNumber: `04091467`, avatar: `https://i.pinimg.com/474x/d2/4b/be/d24bbe79387549086d159aa4462bf4c9.jpg` });
+        const { body, status } = response;
+        expect(status).toBe(400);
+        expect(body).toEqual({ message: ['password is required'] });
+    });
 
 })
