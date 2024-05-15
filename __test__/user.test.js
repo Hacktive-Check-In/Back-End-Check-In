@@ -4,7 +4,6 @@ const { User, Restaurant, Item } = require('../models')
 
 let access_token;
 
-
 beforeAll(async () => {
     try {
         const data = await User.create({
