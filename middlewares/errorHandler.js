@@ -26,11 +26,6 @@ let errorHandler = async (err, req, res, next) => {
         message: 'Invalid email / password',
       });
       break;
-    case 'missingData':
-      res.status(404).json({
-        message: 'Data not found',
-      });
-      break;
     case 'Invalid Input':
       res.status(400).json({
         message: 'email / password required',
@@ -41,15 +36,6 @@ let errorHandler = async (err, req, res, next) => {
       break;
     case 'invalidToken':
       res.status(401).json({ message: 'Error authentication' });
-      break;
-    case 'forbidden':
-      res.status(403).json({ message: 'Forbidden' });
-      break;
-    case 'MissingFile':
-      res.status(400).json({ message });
-      break;
-    case 'forbidden':
-      res.status(403).json({ message: 'Forbidden' });
       break;
     default:
       res.status(500).json({

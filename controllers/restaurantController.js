@@ -14,7 +14,6 @@ class restaurantController {
       let restaurant = await Restaurant.findAll(paramsQuerySQL);
       res.status(200).json(restaurant);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
