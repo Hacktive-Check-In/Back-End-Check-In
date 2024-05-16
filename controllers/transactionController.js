@@ -92,7 +92,7 @@ class transactionController {
           }
         );
       } else {
-        const headerId = data.order_id;
+        const headerId = data.order_id.split('-')[1];
         await TransactionHeader.update(
           { status: 'failed' },
           {
