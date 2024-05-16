@@ -4,6 +4,6 @@ const router = require('express').Router();
 
 router.get('/', Authentication, transactionController.getTransactionHeaderData);
 router.post('/', Authentication, transactionController.createTransaction);
-router.get('/:id', Authentication, transactionController.getTransactionDetail);
 router.post('/midtrans/result', transactionController.successTransaction);
+router.get('/:id', Authentication, transactionController.getTransactionDetail);
 module.exports = router;
