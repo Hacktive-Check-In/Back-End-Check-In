@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "postgres",
-    "password": "040915",
+    "password": "postgres",
     "database": "GPC3_TEST",
     "host": "127.0.0.1",
     "dialect": "postgres"

@@ -43,7 +43,6 @@ class UserControllers {
       });
     } catch (error) {
       next(error);
-      // console.log(error);
     }
   }
   static async getUserDetail(req, res, next) {
