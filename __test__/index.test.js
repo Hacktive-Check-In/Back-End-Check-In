@@ -48,7 +48,7 @@ test("/register failed with existing email", async () => {
         .post("/register")
         .send({
             name: "user2",
-            email: "user1@mail.com", 
+            email: "user1@mail.com",
             password: "user1",
             phoneNumber: "087654321"
         });
@@ -224,10 +224,8 @@ describe('Success Get /restaurants', () => {
         expect(response.body).toHaveProperty("message", "Error authentication");
     });
     test("success Get /restaurants", async () => {
-        // let token;
         const respone = (await request(app).get('/restaurants').set('Authorization', 'Bearer ' + access_token));
         const { body, status } = respone
-        // access_token = body.access_token;
         console.log(body, "<<<<<<<ATASNYA")
         expect(status).toBe(200);
         expect(body).toBeInstanceOf(Array);
@@ -236,10 +234,8 @@ describe('Success Get /restaurants', () => {
         }
     })
     test("success Get /restaurants with search", async () => {
-        // let token;
         const respone = (await request(app).get('/restaurants?search=dining').set('Authorization', 'Bearer ' + access_token));
         const { body, status } = respone
-        // access_token = body.access_token;
         console.log(body, "<<<<<<<ATASNYA")
         expect(status).toBe(200);
         expect(body).toBeInstanceOf(Array);
@@ -248,19 +244,31 @@ describe('Success Get /restaurants', () => {
         }
     })
     test("authorization error /restaurants", async () => {
-        // let token;
         const respone = await request(app).get('/restaurants')
         const { body, status } = respone
-        // access_token = body.access_token;
         console.log(body, "<<<<<<<ATASNYA")
         expect(status).toBe(401);
         expect(body).toBeInstanceOf(Object);
     })
+    test("should return unauthorized error with status 401 if token is invalid", async () => {
+        const response = await request(app)
+            .get("/restaurants")
+            .set("Authorization", `Bearer ${invalidSignature}`);
+
+        expect(response.statusCode).toBe(401);
+        expect(response.body).toHaveProperty("message", "Error authentication");
+    });
+    test("should return unauthorized error with status 401 if token is invalid", async () => {
+        const response = await request(app)
+            .get("/restaurants")
+            .set("Authorization", `Bearer ${tokenError}`);
+        expect(response.statusCode).toBe(401);
+        expect(response.body).toHaveProperty("message", "Error authentication");
+    });
     test('Success Get Id/restaurants', async () => {
         const id = 1;
         const response = (await request(app).get(`/restaurants/${id}`).set('Authorization', 'Bearer ' + access_token))
         const { body, status } = response;
-        access_token = body.access_token;
         console.log(body, "<<<<<<<<")
         expect(status).toBe(200);
         expect(body).toBeInstanceOf(Array);
@@ -269,6 +277,33 @@ describe('Success Get /restaurants', () => {
         }
     }
     )
+})
+describe("Success Get /Transcation", () => {
+    test("success Get /Transcation", async () => {
+        // console.log('Access Token:', access_token);
+        const respone = await request(app)
+            .get('/transaction')
+            .set('Authorization', `Bearer ${access_token}`);
+        const { body, status } = respone
+        // console.log('Status:', status);
+        // console.log('Body:', body, "<<<<<<<ATASNYA")
+        expect(status).toBe(200);
+        expect(body).toBeInstanceOf(Array);
+        if (body.length > 0) {
+            expect(body[0]).toBeInstanceOf(Object)
+        }
+    })
+    // test('Success Get Id/Transcation', async () => {
+    //     const id = 1;
+    //     const response = (await request(app).get(`/transaction/${id}`).set('Authorization', 'Bearer ' + access_token))
+    //     const { body, status } = response;
+    //     console.log(body, "<<<<<<<<")
+    //     expect(status).toBe(200);
+    //     expect(body).toBeInstanceOf(Array);
+    //     if (body.length > 0) {
+    //         expect(body[0]).toBeInstanceOf(Object)
+    //     }
+    // })
 })
 afterAll(async () => {
     try {
