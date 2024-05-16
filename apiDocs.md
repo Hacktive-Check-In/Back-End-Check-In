@@ -421,7 +421,7 @@ _response (401 - Unauthorized)_
 
 ### Response:
 
-_response (200-ok)_
+_response (201-ok)_
 
 ```json
 {

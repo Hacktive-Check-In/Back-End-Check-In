@@ -1,6 +1,6 @@
 const request = require("supertest")
 const app = require("../app");
-const { User, Restaurant, Item } = require('../models')
+const { User, Restaurant, Item, TransactionHeader, TransactionDetail, sequelize } = require('../models');
 
 let access_token;
 
@@ -10,31 +10,34 @@ const invalidSignature = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ4In0.a
 
 beforeAll(async () => {
     try {
-        const data = await User.create({
+        await User.create({
             name: "admin1",
             email: "admin@gmail.com",
             password: "12345",
             phoneNumber: "04091467",
             avatar: "https://i.pinimg.com/474x/d2/4b/be/d24bbe79387549086d159aa4462bf4c9.jpg"
         });
-        await User.bulkCreate(data)
-        let restaurant = require('../data/restaurant.json').map((el) => {
+
+        // Create Restaurants
+        let restaurants = require('../data/restaurant.json').map((el) => {
             delete el.id;
             el.createdAt = el.updatedAt = new Date();
             return el;
         });
-        await queryInterface.bulkInsert("Restaurants", restaurant, {});
-        let item = require('../data/item.json').map((el) => {
+        await sequelize.queryInterface.bulkInsert("Restaurants", restaurants, {});
+
+        // Create Items
+        let items = require('../data/item.json').map((el) => {
             delete el.id;
             el.createdAt = el.updatedAt = new Date();
             return el;
         });
-        await queryInterface.bulkInsert("Items", item, {});
-        // await sequelize.queryInterface.bulkInsert('Restaurant', data)
+        await sequelize.queryInterface.bulkInsert("Items", items, {});
     } catch (error) {
         console.log(error)
     }
 })
+
 
 test("/register failed with existing email", async () => {
     await User.create({
@@ -278,6 +281,43 @@ describe('Success Get /restaurants', () => {
     }
     )
 })
+describe("success post /Transcation", () => {
+    test('should create a new transaction', async () => {
+        const response = await request(app)
+            .post('/transaction')
+            .set('Authorization', `Bearer ${access_token}`)
+            .send({
+                RestaurantId: 1,
+                reservationDate: '2024-05-16 18:48:57.622 +0700',
+                totalPrice: 350000,
+                items: [
+                    { ItemId: 1, qty: 2, subTotal: 100000 },
+                    { ItemId: 2, qty: 2, subTotal: 200000 },
+                ],
+            });
+        const { body, status } = response;
+        // console.log(body, "TRANSCATION<<<<<<<<<<<<<");
+        expect(status).toBe(201);
+        expect(body).toHaveProperty('redirect_url', expect.any(String));
+    });
+    test('Error reservationDate missing', async () => {
+        const response = await request(app)
+            .post('/transaction')
+            .set('Authorization', `Bearer ${access_token}`)
+            .send({
+                RestaurantId: 1,
+                totalPrice: 350000,
+                items: [
+                    { ItemId: 1, qty: 2, subTotal: 100000 },
+                    { ItemId: 2, qty: 2, subTotal: 200000 },
+                ],
+            });
+        const { body, status } = response;
+        // console.log(body, "TRANSCATION<<<<<<<<<<<<<");
+        expect(status).toBe(400);
+        expect(body).toHaveProperty("message", "reservation date is required");
+    });
+})
 describe("Success Get /Transcation", () => {
     test("success Get /Transcation", async () => {
         // console.log('Access Token:', access_token);
@@ -293,17 +333,49 @@ describe("Success Get /Transcation", () => {
             expect(body[0]).toBeInstanceOf(Object)
         }
     })
-    // test('Success Get Id/Transcation', async () => {
-    //     const id = 1;
-    //     const response = (await request(app).get(`/transaction/${id}`).set('Authorization', 'Bearer ' + access_token))
-    //     const { body, status } = response;
-    //     console.log(body, "<<<<<<<<")
-    //     expect(status).toBe(200);
-    //     expect(body).toBeInstanceOf(Array);
-    //     if (body.length > 0) {
-    //         expect(body[0]).toBeInstanceOf(Object)
-    //     }
-    // })
+    test('Success Get Id /Transcation', async () => {
+        const id = 1;
+        const response = (await request(app).get(`/transaction/${id}`).set('Authorization', 'Bearer ' + access_token))
+        const { body, status } = response;
+        console.log(body, "<<<<<<<<")
+        expect(status).toBe(200);
+        expect(body).toBeInstanceOf(Object);
+    })
+    test('Missing Authorization /Transcation', async () => {
+        const response = await request(app).get(`/transaction`)
+        const { body, status } = response;
+        console.log(body, "<<<<<<<<")
+        expect(status).toBe(401);
+        expect(body).toHaveProperty("message", "Error authentication");
+    })
+    test('Error Token/Transcation', async () => {
+        const response = (await request(app).get(`/transaction`).set('Authorization', 'Bearer ' + tokenError))
+        const { body, status } = response;
+        // console.log(body, "<<<<<<<<")
+        expect(status).toBe(401);
+        expect(body).toHaveProperty("message", "Error authentication")
+    })
+    test('InvalidSignature /Transcation', async () => {
+        const response = (await request(app).get(`/transaction`).set('Authorization', 'Bearer ' + invalidSignature))
+        const { body, status } = response;
+        // console.log(body, "<<<<<<<<")
+        expect(status).toBe(401);
+        expect(body).toHaveProperty("message", "Error authentication")
+    })
+})
+describe('midtrans result /Transcation', () => {
+    test('create result', async () => {
+        const respone = await request(app)
+            .post('/transcation/midtrans/result')
+            .send({
+                order_id: "payment-1-asalajaini",
+                transaction_status: "settlement"
+            })
+        const { body, status } = respone;
+        console.log(body, "<<<<< MIDTRAns");
+        expect(status).toBe(200);
+        expect(body).toHaveProperty('message', 'midtrans transaction process finish');
+    })
 })
 afterAll(async () => {
     try {
@@ -320,6 +392,18 @@ afterAll(async () => {
             restartIdentity: true,
         });
         await Item.destroy({
+            where: {},
+            truncate: true,
+            cascade: true,
+            restartIdentity: true,
+        });
+        await TransactionHeader.destroy({
+            where: {},
+            truncate: true,
+            cascade: true,
+            restartIdentity: true,
+        });
+        await TransactionDetail.destroy({
             where: {},
             truncate: true,
             cascade: true,
