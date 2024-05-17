@@ -14,9 +14,9 @@ let Authentication = async (req, res, next) => {
 
       let payload = encryptJsonwebtoken(token);
       let user = await User.findByPk(payload.id);
-      if (!user) {
-        throw { name: 'invalidToken' };
-      }
+      // if (!user) {
+      //   throw { name: 'invalidToken' };
+      // }
 
       req.user = {
         id: user.id,
