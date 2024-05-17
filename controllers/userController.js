@@ -32,7 +32,7 @@ class UserControllers {
         throw { name: 'Invalid User' };
       }
       let compare = comparePassword(password, user.password);
-      if (!user || !compare) {
+      if (!compare) {
         throw { name: 'Invalid User' };
       }
       let token = jsonwebtoken({
@@ -51,7 +51,6 @@ class UserControllers {
       let data = await User.findOne({ where: { id: userId } });
       res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }

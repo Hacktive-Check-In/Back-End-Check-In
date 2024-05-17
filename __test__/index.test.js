@@ -157,13 +157,13 @@ describe('POST /login', () => {
       .send({ email: `admin@gmail.com`, password: `12345` });
     const { body, status } = response;
     access_token = body.access_token;
-    console.log(body.access_token, '<<<<<<<<<body');
     expect(status).toBe(200);
     expect(body).toHaveProperty('access_token', expect.any(String));
   });
   test('/login failed without password', async () => {
     const response = await request(app)
       .post('/login')
+      .set('Authorization', `Bearer ${access_token}`)
       .send({ email: 'admin@gmail.com' });
     const { body, status } = response;
     expect(status).toBe(400);
@@ -172,14 +172,98 @@ describe('POST /login', () => {
   test('/login failed without email', async () => {
     const response = await request(app)
       .post('/login')
+      .set('Authorization', `Bearer ${access_token}`)
       .send({ password: '12345' });
     const { body, status } = response;
     expect(status).toBe(400);
     expect(body).toEqual({ message: 'email / password required' });
   });
 });
+test('login failed with incorrect email', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${access_token}`)
+    .send({ email: 'incorrect_email@gmail.com', password: '12345' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+test('login failed with incorrect password', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${access_token}`)
+    .send({ email: 'admin@gmail.com', password: 'incorrect_password' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+test('login failed incorrect email and password with invalid token', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${invalidToken}`)
+    .send({ email: 'incorrect_email@gmail.com', password: 'any_password' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+test('login failed incorrect email with invalid token', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${invalidToken}`)
+    .send({ email: 'incorrect_email@gmail.com', password: '12345' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+test('login failed incorrect password with invalid token', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${invalidToken}`)
+    .send({ email: 'admin@gmail.com', password: 'incorrect_password' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+test('login failed incorrect email and password with invalid signature', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${invalidSignature}`)
+    .send({ email: 'incorrect_email@gmail.com', password: 'any_password' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+test('login failed incorrect email with invalid signature', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${invalidSignature}`)
+    .send({ email: 'incorrect_email@gmail.com', password: '12345' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+test('login failed incorrect password with invalid Signature', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${invalidSignature}`)
+    .send({ email: 'admin@gmail.com', password: 'incorrect_password' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+test('login failed with incorrect email and password', async () => {
+  const response = await request(app)
+    .post('/login')
+    .set('Authorization', `Bearer ${access_token}`)
+    .send({ email: 'incorrect_email@gmail.com', password: 'any_password' });
+  const { body, status } = response;
+  expect(status).toBe(401);
+  expect(body).toEqual({ message: 'Invalid email / password' });
+});
+
+
 describe('GET /user/detail', () => {
-  it('should return user details with status 200 when authenticated', async () => {
+  test('should return user details with status 200 when authenticated', async () => {
     const response = await request(app)
       .get('/user/detail')
       .set('Authorization', `Bearer ${access_token}`);
@@ -220,38 +304,36 @@ describe('Success Get /restaurants', () => {
     expect(response.statusCode).toBe(401);
     expect(response.body).toHaveProperty('message', 'Error authentication');
   });
-  test('success Get /restaurants', async () => {
+  it('should return all restaurants', async () => {
     const respone = await request(app)
       .get('/restaurants')
       .set('Authorization', 'Bearer ' + access_token);
     const { body, status } = respone;
-    console.log(body, '<<<<<<<ATASNYA');
     expect(status).toBe(200);
     expect(body).toBeInstanceOf(Array);
     if (body.length > 0) {
       expect(body[0]).toBeInstanceOf(Object);
     }
   });
-  test('success Get /restaurants with search', async () => {
+  it('should return restaurants based on search query', async () => {
     const respone = await request(app)
       .get('/restaurants?search=dining')
       .set('Authorization', 'Bearer ' + access_token);
     const { body, status } = respone;
-    console.log(body, '<<<<<<<ATASNYA');
     expect(status).toBe(200);
     expect(body).toBeInstanceOf(Array);
     if (body.length > 0) {
       expect(body[0]).toBeInstanceOf(Object);
     }
   });
-  test('authorization error /restaurants', async () => {
+  it('should return unauthorized error if no token is provided', async () => {
     const respone = await request(app).get('/restaurants');
     const { body, status } = respone;
     console.log(body, '<<<<<<<ATASNYA');
     expect(status).toBe(401);
     expect(body).toBeInstanceOf(Object);
   });
-  test('should return unauthorized error with status 401 if token is invalid', async () => {
+  it('should return unauthorized error with status 401 if token has invalid signature', async () => {
     const response = await request(app)
       .get('/restaurants')
       .set('Authorization', `Bearer ${invalidSignature}`);
@@ -259,26 +341,35 @@ describe('Success Get /restaurants', () => {
     expect(response.statusCode).toBe(401);
     expect(response.body).toHaveProperty('message', 'Error authentication');
   });
-  test('should return unauthorized error with status 401 if token is invalid', async () => {
+  it('should return unauthorized error with status 401 if token is expired or incorrect', async () => {
     const response = await request(app)
       .get('/restaurants')
       .set('Authorization', `Bearer ${tokenError}`);
     expect(response.statusCode).toBe(401);
     expect(response.body).toHaveProperty('message', 'Error authentication');
   });
-  test('Success Get Id/restaurants', async () => {
+  it('Success Get Id/restaurants', async () => {
     const id = 1;
     const response = await request(app)
       .get(`/restaurants/${id}`)
       .set('Authorization', 'Bearer ' + access_token);
     const { body, status } = response;
-    console.log(body, '<<<<<<<<');
     expect(status).toBe(200);
     expect(body).toBeInstanceOf(Array);
     if (body.length > 0) {
       expect(body[0]).toBeInstanceOf(Object);
     }
   });
+  it('should return 404 if restaurant ID is not found', async () => {
+    const nonExistentId = 99; // Gunakan ID yang tidak valid atau tidak ada
+    const response = await request(app)
+      .get(`/restaurants/${nonExistentId}`)
+      .set('Authorization', `Bearer ${tokenError}`);
+
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty('message', 'Error authentication');
+  });
+
 });
 describe('success post /Transcation', () => {
   test('should create a new transaction', async () => {
@@ -318,11 +409,12 @@ describe('success post /Transcation', () => {
   });
 });
 describe('Success Get /Transcation', () => {
-  test('success Get /Transcation', async () => {
+  test('should get all transactions', async () => {
     // console.log('Access Token:', access_token);
     const respone = await request(app)
       .get('/transaction')
-      .set('Authorization', `Bearer ${access_token}`);
+      .set('Authorization', `Bearer ${access_token}`)
+     .set('Additional-Header', 'AdditionalHeaderValue');
     const { body, status } = respone;
     // console.log('Status:', status);
     // console.log('Body:', body, "<<<<<<<ATASNYA")
@@ -332,36 +424,61 @@ describe('Success Get /Transcation', () => {
       expect(body[0]).toBeInstanceOf(Object);
     }
   });
-  test('Success Get Id /Transcation', async () => {
+  test('should get transaction by ID', async () => {
     const id = 1;
     const response = await request(app)
       .get(`/transaction/${id}`)
-      .set('Authorization', 'Bearer ' + access_token);
+      .set('Authorization', 'Bearer ' + access_token)
+      .set('Additional-Header', 'AdditionalHeaderValue');
     const { body, status } = response;
     console.log(body, '<<<<<<<<');
     expect(status).toBe(200);
     expect(body).toBeInstanceOf(Object);
   });
-  test('Missing Authorization /Transcation', async () => {
-    const response = await request(app).get(`/transaction`);
+  test('Bearer Error', async () => {
+    const id = 1;
+    const response = await request(app)
+      .get(`/transaction/${id}`)
+      .set('Authorization', 'BearerP ' + access_token);
     const { body, status } = response;
     console.log(body, '<<<<<<<<');
     expect(status).toBe(401);
     expect(body).toHaveProperty('message', 'Error authentication');
   });
-  test('Error Token/Transcation', async () => {
+  test('Token Error', async () => {
+    const id = 1;
+    const response = await request(app)
+      .get(`/transaction/${id}`)
+      .set('Authorization', 'Bearer ' + invalidToken);
+    const { body, status } = response;
+    console.log(body, '<<<<<<<<');
+    expect(status).toBe(401);
+    expect(body).toHaveProperty('message', 'Error authentication');
+  });
+  test('missing authorization', async () => {
     const response = await request(app)
       .get(`/transaction`)
-      .set('Authorization', 'Bearer ' + tokenError);
+     .set('Additional-Header', 'AdditionalHeaderValue');
+    const { body, status } = response;
+    console.log(body, '<<<<<<<<');
+    expect(status).toBe(401);
+    expect(body).toHaveProperty('message', 'Error authentication');
+  });
+  test('error token', async () => {
+    const response = await request(app)
+      .get(`/transaction`)
+      .set('Authorization', 'Bearer ' + tokenError)
+      .set('Additional-Header', 'AdditionalHeaderValue');
     const { body, status } = response;
     // console.log(body, "<<<<<<<<")
     expect(status).toBe(401);
     expect(body).toHaveProperty('message', 'Error authentication');
   });
-  test('InvalidSignature /Transcation', async () => {
+  test('invalid signature', async () => {
     const response = await request(app)
       .get(`/transaction`)
-      .set('Authorization', 'Bearer ' + invalidSignature);
+      .set('Authorization', 'Bearer ' + invalidSignature)
+      .set('Additional-Header', 'AdditionalHeaderValue'); 
     const { body, status } = response;
     // console.log(body, "<<<<<<<<")
     expect(status).toBe(401);
@@ -372,6 +489,7 @@ describe('midtrans result /Transcation', () => {
   test('transaction result success settlement', async () => {
     const respone = await request(app)
       .post('/transaction/midtrans/result')
+      .set('Additional-Header', 'AdditionalHeaderValue')
       .send({
         order_id: 'payment-1-asalajaini',
         transaction_status: 'settlement',
@@ -388,6 +506,7 @@ describe('midtrans result /Transcation', () => {
   test('transaction result success capture', async () => {
     const respone = await request(app)
       .post('/transaction/midtrans/result')
+      .set('Additional-Header', 'AdditionalHeaderValue') 
       .send({
         order_id: 'payment-1-asalajaini',
         transaction_status: 'capture',
@@ -404,6 +523,7 @@ describe('midtrans result /Transcation', () => {
   test('transaction result success cancel', async () => {
     const respone = await request(app)
       .post('/transaction/midtrans/result')
+      .set('Additional-Header', 'AdditionalHeaderValue')
       .send({
         order_id: 'payment-1-asalajaini',
         transaction_status: 'cancel',

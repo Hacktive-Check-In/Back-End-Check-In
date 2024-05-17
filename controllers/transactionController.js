@@ -104,10 +104,8 @@ class transactionController {
       }
       res.status(200).json({
         message: 'midtrans transaction process finish',
-      });
-      // console.log(data);
+      }); 
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
@@ -129,7 +127,6 @@ class transactionController {
       });
       res.status(200).json(dataTransaction);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
@@ -162,7 +159,6 @@ class transactionController {
       });
       res.status(200).json(dataTransaction);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }

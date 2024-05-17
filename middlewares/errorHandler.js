@@ -1,5 +1,4 @@
 let errorHandler = async (err, req, res, next) => {
-  let status = err.status;
   let name = err.name;
   let message = err.message;
   console.log(err, 'errr');
@@ -31,9 +30,6 @@ let errorHandler = async (err, req, res, next) => {
         message: 'email / password required',
       });
       break;
-    case 'validationError':
-      res.status(401).json({ message });
-      break;
     case 'invalidToken':
       res.status(401).json({ message: 'Error authentication' });
       break;
@@ -41,7 +37,6 @@ let errorHandler = async (err, req, res, next) => {
       res.status(500).json({
         message: 'Internal server error',
       });
-      break;
   }
 };
 
