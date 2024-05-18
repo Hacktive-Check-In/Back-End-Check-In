@@ -99,11 +99,15 @@ _response (400 - Bad request)_
 
 ```JSON
 {
-    "message": "Invalid email / password"
-}
-OR
-{
     "message": "email / password required"
+}
+```
+
+_response (401 - Unauthorized)_
+
+```JSON
+{
+    "message": "Invalid email / password"
 }
 ```
 
@@ -426,6 +430,14 @@ _response (201-ok)_
 ```json
 {
   "redirect_url": "https://app.sandbox.midtrans.com/snap/v4/redirection/4efc40e4-54c1-48a1-9e1d-6ebe1ab8e9cb"
+}
+```
+
+_response (400 - Bad request)_
+
+```JSON
+{
+    "message": "reservation date is required"
 }
 ```
 
